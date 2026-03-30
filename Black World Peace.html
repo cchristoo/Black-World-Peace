@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unity & Peace | A Wish for the World</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0a0a0c;
+            --text-color: #e0e0e0;
+            --accent-color: #88aaff;
+            --dim-text: #888;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Stars */
+        .stars-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at center, #1a1a2e 0%, #0a0a0c 100%);
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: twinkle var(--duration) infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.2); }
+        }
+
+        /* Layout */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .peace-symbol {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+            filter: drop-shadow(0 0 15px rgba(136, 170, 255, 0.4));
+            animation: float 6s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 1rem;
+            background: linear-gradient(to bottom, #fff, #888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: var(--dim-text);
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        /* Sections */
+        section {
+            max-width: 900px;
+            margin: 0 auto 100px auto;
+            padding: 40px 20px;
+        }
+
+        .quote-card {
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .quote-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+        }
+
+        blockquote {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        cite {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-color);
+        }
+
+        /* Interaction Section */
+        .interactive-area {
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(136, 170, 255, 0.05) 0%, transparent 70%);
+            padding: 60px 20px;
+            border-radius: 30px;
+        }
+
+        .btn-peace {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 15px 40px;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 20px;
+        }
+
+        .btn-peace:hover {
+            background: var(--accent-color);
+            color: #000;
+            box-shadow: 0 0 20px rgba(136, 170, 255, 0.4);
+        }
+
+        #wish-counter {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-top: 10px;
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--dim-text);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--glass);
+        }
+
+        /* Scroll Animation Class */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="stars-container" id="starField"></div>
+
+    <header>
+        <div class="peace-symbol">🕊️</div>
+        <h1>May Peace Prevail</h1>
+        <p class="tagline">Across every border, in every heart, and through every generation. We are one humanity.</p>
+        <a href="#content" style="color: var(--accent-color); text-decoration: none; font-size: 0.9rem;">Scroll to explore</a>
+    </header>
+
+    <main id="content">
+        <section class="reveal">
+            <div class="quote-card">
+                <blockquote>"Peace is not merely a distant goal that we seek, but a means by which we arrive at that goal."</blockquote>
+                <cite>— Martin Luther King Jr.</cite>
+            </div>
+        </section>
+
+        <section class="reveal">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
+                <div class="quote-card">
+                    <h3>Empathy</h3>
+                    <p style="color: var(--dim-text); margin-top: 10px;">To understand the pain of others as our own is the first step toward global healing.</p>
+                </div>
+                <div class="quote-card">
+                    <h3>Dialogue</h3>
+                    <p style="color: var(--dim-text); margin-top: 10px;">Words are the bridges that span the canyons of misunderstanding and fear.</p>
+                </div>
+                <div class="quote-card">
+                    <h3>Unity</h3>
+                    <p style="color: var(--dim-text); margin-top: 10px;">Beyond labels and flags lies our shared breath on this pale blue dot.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal interactive-area">
+            <h2>Add Your Wish to the Universe</h2>
+            <p>Every thought of peace is a seed planted for the future.</p>
+            <span id="wish-counter">0</span>
+            <p style="font-size: 0.8rem; text-transform: uppercase;">Wishes sent today</p>
+            <button class="btn-peace" onclick="addWish()">Send a Wish for Peace</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Unity Initiative. Designed with hope for a peaceful world.</p>
+    </footer>
+
+    <script>
+        // Generate Stars
+        const starField = document.getElementById('starField');
+        const starCount = 150;
+
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = Math.random() * 3 + 'px';
+            star.style.width = size;
+            star.style.height = size;
+            star.style.top = Math.random() * 100 + '%';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+            starField.appendChild(star);
+        }
+
+        // Scroll Reveal Logic
+        const reveals = document.querySelectorAll('.reveal');
+        function reveal() {
+            reveals.forEach(windowReveal => {
+                const windowHeight = window.innerHeight;
+                const elementTop = windowReveal.getBoundingClientRect().top;
+                const elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    windowReveal.classList.add('active');
+                }
+            });
+        }
+        window.addEventListener('scroll', reveal);
+        reveal(); // Initial check
+
+        // Interaction Logic
+        let count = 0;
+        const counterDisplay = document.getElementById('wish-counter');
+        
+        function addWish() {
+            count++;
+            counterDisplay.innerText = count;
+            
+            // Visual feedback: create a rising star
+            const floatingStar = document.createElement('div');
+            floatingStar.innerHTML = '✨';
+            floatingStar.style.position = 'fixed';
+            floatingStar.style.left = '50%';
+            floatingStar.style.bottom = '20%';
+            floatingStar.style.fontSize = '2rem';
+            floatingStar.style.transition = 'all 2s ease-out';
+            floatingStar.style.pointerEvents = 'none';
+            document.body.appendChild(floatingStar);
+
+            setTimeout(() => {
+                floatingStar.style.transform = `translate(${(Math.random()-0.5)*200}px, -400px)`;
+                floatingStar.style.opacity = '0';
+            }, 10);
+
+            setTimeout(() => {
+                floatingStar.remove();
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
